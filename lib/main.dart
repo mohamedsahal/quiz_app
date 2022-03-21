@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/question.dart';
+import 'package:quiz_app/result.dart';
 
 void main() {
   runApp(
@@ -56,6 +57,8 @@ class _HomeState extends State<Home> {
         a: false),
   ];
   int questionindex = 0;
+  int correctAnswers = 0;
+  int wrongAnswers = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,14 +94,32 @@ class _HomeState extends State<Home> {
                         onPressed: () {
                           final isTrue =
                               questions[questionindex].questionAnswer;
-                          setState(() {
-                            if (questionindex < questions.length - 1)
-                              questionindex++;
-                          });
+                          setState(
+                            () {
+                              if (questionindex < questions.length - 1)
+                                questionindex++;
+                              else {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => result(
+                                        answer: correctAnswers,
+                                        falses: wrongAnswers),
+                                  ),
+                                );
+                              }
+                            },
+                          );
                           if (isTrue == true) {
-                            print('Waa Saxday');
+                            setState(() {
+                              correctAnswers = correctAnswers + 1;
+                            });
                           } else {
-                            print('Waa khaladay');
+                            setState(
+                              () {
+                                wrongAnswers = wrongAnswers + 1;
+                              },
+                            );
                           }
                         },
                         child: Text(
@@ -125,14 +146,26 @@ class _HomeState extends State<Home> {
                         onPressed: () {
                           final isTrue =
                               questions[questionindex].questionAnswer;
-                          setState(() {
-                            if (questionindex < questions.length - 1)
-                              questionindex++;
-                          });
+                          setState(
+                            () {
+                              if (questionindex < questions.length - 1)
+                                questionindex++;
+                              else {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => result(
+                                        answer: correctAnswers,
+                                        falses: wrongAnswers),
+                                  ),
+                                );
+                              }
+                            },
+                          );
                           if (isTrue == true) {
-                            print('Waa Saxday');
+                            correctAnswers = correctAnswers + 1;
                           } else {
-                            print('Waa khaladay');
+                            wrongAnswers = wrongAnswers + 1;
                           }
                         },
                         child: Text(
