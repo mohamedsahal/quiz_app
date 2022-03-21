@@ -34,6 +34,23 @@ class _HomeState extends State<Home> {
     "Muslims reformers in the modern period were not concerned about European colonialism.",
     "Most African-American Muslims belong to the Nation of Islam."
   ];
+  List<bool> answers = [
+    true,
+    false,
+    false,
+    true,
+    false,
+    false,
+    true,
+    false,
+    false,
+    false,
+    true,
+    true,
+    false,
+    false,
+    false,
+  ];
   int questionindex = 0;
   @override
   Widget build(BuildContext context) {
@@ -67,7 +84,17 @@ class _HomeState extends State<Home> {
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xff06d6a0),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          final isTrue = answers[questionindex];
+                          setState(() {
+                            questionindex++;
+                          });
+                          if (isTrue == true) {
+                            print('Waa Saxday');
+                          } else {
+                            print('Waa khaladay');
+                          }
+                        },
                         child: Text(
                           'True',
                           style: TextStyle(fontSize: 18),
@@ -89,7 +116,17 @@ class _HomeState extends State<Home> {
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xffef476f),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          final isTrue = answers[questionindex];
+                          setState(() {
+                            questionindex++;
+                          });
+                          if (isTrue == true) {
+                            print('Waa Saxday');
+                          } else {
+                            print('Waa khaladay');
+                          }
+                        },
                         child: Text(
                           'False',
                           style: TextStyle(fontSize: 18),
